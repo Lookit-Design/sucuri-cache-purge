@@ -55,11 +55,21 @@ class Lookit_Sucuri_Purge_Admin_Bar {
 			return '';
 		}
 
-		if ( is_singular() )        return (string) get_permalink();
-		if ( is_tax() || is_category() || is_tag() ) return (string) get_term_link( get_queried_object() );
-		if ( is_post_type_archive() ) return (string) get_post_type_archive_link( get_queried_object()->name );
-		if ( is_author() )          return (string) get_author_posts_url( get_queried_object_id() );
-		if ( is_home() || is_front_page() ) return (string) home_url( '/' );
+		if ( is_singular() ) {
+			return (string) get_permalink();
+		}
+		if ( is_tax() || is_category() || is_tag() ) {
+			return (string) get_term_link( get_queried_object() );
+		}
+		if ( is_post_type_archive() ) {
+			return (string) get_post_type_archive_link( get_queried_object()->name );
+		}
+		if ( is_author() ) {
+			return (string) get_author_posts_url( get_queried_object_id() );
+		}
+		if ( is_home() || is_front_page() ) {
+			return (string) home_url( '/' );
+		}
 
 		global $wp;
 		return home_url( $wp->request ? '/' . $wp->request . '/' : '/' );
@@ -67,8 +77,12 @@ class Lookit_Sucuri_Purge_Admin_Bar {
 
 	public static function enqueue_assets() {
 
-		if ( ! is_admin_bar_showing() ) return;
-		if ( ! current_user_can( 'manage_options' ) ) return;
+		if ( ! is_admin_bar_showing() ) {
+			return;
+		}
+		if ( ! current_user_can( 'manage_options' ) ) {
+			return;
+		}
 
 		wp_enqueue_style(
 			self::HANDLE,
