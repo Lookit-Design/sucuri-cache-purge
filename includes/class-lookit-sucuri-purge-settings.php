@@ -57,7 +57,7 @@ class Lookit_Sucuri_Purge_Settings {
 				'error'
 			);
 			// Keep whatever was previously saved rather than overwriting with bad data
-			$existing = self::get_settings();
+			$existing             = self::get_settings();
 			$sanitized['api_key'] = $existing['api_key'] ?? '';
 			return $sanitized;
 		}
