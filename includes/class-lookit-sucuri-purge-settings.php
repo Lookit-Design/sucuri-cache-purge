@@ -47,17 +47,24 @@ class Lookit_Sucuri_Purge_Settings {
 
 		$sanitized = array();
 		$raw       = isset( $input['api_key'] ) ? sanitize_text_field( trim( $input['api_key'] ) ) : '';
+		$existing  = self::get_settings();
 
-		// Validate the combined KEY/SECRET format: 32hex / 32hex
-		if ( '' !== $raw && ! preg_match( '#^[a-f0-9]{32}/[a-f0-9]{32}$#i', $raw ) ) {
+		// The field renders blank so the secret is never sent back to the
+		// browser; a blank submission therefore means "keep the saved key".
+		if ( '' === $raw ) {
+			$sanitized['api_key'] = $existing['api_key'] ?? '';
+			return $sanitized;
+		}
+
+		// Validate the combined KEY/SECRET format: 32hex / 32hex.
+		if ( ! preg_match( '#^[a-f0-9]{32}/[a-f0-9]{32}$#i', $raw ) ) {
 			add_settings_error(
 				self::OPTION_KEY,
 				'invalid_format',
 				__( 'Invalid API Key format. Expected: 32 characters / 32 characters. Paste the "API Key (for plugin)" value from your Sucuri dashboard → API → API Details.', 'lookit-sucuri-cache-purge' ),
 				'error'
 			);
-			// Keep whatever was previously saved rather than overwriting with bad data
-			$existing             = self::get_settings();
+			// Keep whatever was previously saved rather than overwriting with bad data.
 			$sanitized['api_key'] = $existing['api_key'] ?? '';
 			return $sanitized;
 		}
@@ -93,9 +100,9 @@ class Lookit_Sucuri_Purge_Settings {
 			type="password"
 			name="<?php echo esc_attr( self::OPTION_KEY ); ?>[api_key]"
 			id="lookit_sucuri_api_key"
-			value="<?php echo esc_attr( $api_key ); ?>"
+			value=""
 			class="regular-text"
-			placeholder="<?php esc_attr_e( 'e.g. 31d3f48f9b...a7c2e1f8/a7c2e1f8...b3d4c6e7', 'lookit-sucuri-cache-purge' ); ?>"
+			placeholder="<?php echo $api_key ? esc_attr__( 'Leave blank to keep the saved key', 'lookit-sucuri-cache-purge' ) : esc_attr__( 'e.g. 31d3f48f9b...a7c2e1f8/a7c2e1f8...b3d4c6e7', 'lookit-sucuri-cache-purge' ); ?>"
 			autocomplete="off"
 			style="font-family: monospace;"
 		>
@@ -103,7 +110,7 @@ class Lookit_Sucuri_Purge_Settings {
 			<p class="description">
 				<?php esc_html_e( 'Currently set:', 'lookit-sucuri-cache-purge' ); ?>
 				<code><?php echo esc_html( $masked ); ?></code>
-				&mdash; <?php esc_html_e( 'paste a new value to replace it.', 'lookit-sucuri-cache-purge' ); ?>
+				&mdash; <?php esc_html_e( 'leave blank to keep it, or paste a new value to replace it.', 'lookit-sucuri-cache-purge' ); ?>
 			</p>
 		<?php endif; ?>
 		<?php
