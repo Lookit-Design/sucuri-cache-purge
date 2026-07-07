@@ -13,13 +13,13 @@
 defined( 'ABSPATH' ) || exit;
 
 define( 'LOOKIT_SUCURI_PURGE_VERSION', '1.0.0' );
-define( 'LOOKIT_SUCURI_PURGE_DIR',     plugin_dir_path( __FILE__ ) );
-define( 'LOOKIT_SUCURI_PURGE_URL',     plugin_dir_url( __FILE__ ) );
+define( 'LOOKIT_SUCURI_PURGE_DIR', plugin_dir_path( __FILE__ ) );
+define( 'LOOKIT_SUCURI_PURGE_URL', plugin_dir_url( __FILE__ ) );
 
-require_once LOOKIT_SUCURI_PURGE_DIR . 'includes/class-settings.php';
-require_once LOOKIT_SUCURI_PURGE_DIR . 'includes/class-sucuri-api.php';
-require_once LOOKIT_SUCURI_PURGE_DIR . 'includes/class-admin-bar.php';
-require_once LOOKIT_SUCURI_PURGE_DIR . 'includes/class-ajax-handler.php';
+require_once LOOKIT_SUCURI_PURGE_DIR . 'includes/class-lookit-sucuri-purge-settings.php';
+require_once LOOKIT_SUCURI_PURGE_DIR . 'includes/class-lookit-sucuri-purge-sucuri-api.php';
+require_once LOOKIT_SUCURI_PURGE_DIR . 'includes/class-lookit-sucuri-purge-admin-bar.php';
+require_once LOOKIT_SUCURI_PURGE_DIR . 'includes/class-lookit-sucuri-purge-ajax-handler.php';
 
 add_action( 'plugins_loaded', array( 'Lookit_Sucuri_Purge_Settings', 'init' ) );
 add_action( 'plugins_loaded', array( 'Lookit_Sucuri_Purge_Admin_Bar', 'init' ) );

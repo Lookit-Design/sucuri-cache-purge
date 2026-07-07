@@ -49,7 +49,7 @@ class Lookit_Sucuri_Purge_Settings {
 		$raw       = isset( $input['api_key'] ) ? sanitize_text_field( trim( $input['api_key'] ) ) : '';
 
 		// Validate the combined KEY/SECRET format: 32hex / 32hex
-		if ( $raw !== '' && ! preg_match( '#^[a-f0-9]{32}/[a-f0-9]{32}$#i', $raw ) ) {
+		if ( '' !== $raw && ! preg_match( '#^[a-f0-9]{32}/[a-f0-9]{32}$#i', $raw ) ) {
 			add_settings_error(
 				self::OPTION_KEY,
 				'invalid_format',
@@ -174,7 +174,7 @@ class Lookit_Sucuri_Purge_Settings {
 	 */
 	public static function get_api_credentials() {
 		$combined = self::get_api_key();
-		if ( ! $combined || strpos( $combined, '/' ) === false ) {
+		if ( ! $combined || false === strpos( $combined, '/' ) ) {
 			return array( null, null );
 		}
 		$parts = explode( '/', $combined, 2 );

@@ -15,13 +15,19 @@ class Lookit_Sucuri_Purge_Sucuri_Api {
 	public static function purge_url( string $url ): array {
 
 		if ( ! Lookit_Sucuri_Purge_Settings::is_configured() ) {
-			return array( 'success' => false, 'message' => 'Sucuri credentials are not configured.' );
+			return array(
+				'success' => false,
+				'message' => 'Sucuri credentials are not configured.',
+			);
 		}
 
 		$path = self::url_to_sucuri_path( $url );
 
-		if ( $path === '' ) {
-			return array( 'success' => false, 'message' => 'Unable to extract a valid path from the URL.' );
+		if ( '' === $path ) {
+			return array(
+				'success' => false,
+				'message' => 'Unable to extract a valid path from the URL.',
+			);
 		}
 
 		list( $k, $s ) = Lookit_Sucuri_Purge_Settings::get_api_credentials();
@@ -48,7 +54,10 @@ class Lookit_Sucuri_Purge_Sucuri_Api {
 	public static function purge_all(): array {
 
 		if ( ! Lookit_Sucuri_Purge_Settings::is_configured() ) {
-			return array( 'success' => false, 'message' => 'Sucuri credentials are not configured.' );
+			return array(
+				'success' => false,
+				'message' => 'Sucuri credentials are not configured.',
+			);
 		}
 
 		list( $k, $s ) = Lookit_Sucuri_Purge_Settings::get_api_credentials();
@@ -113,7 +122,7 @@ class Lookit_Sucuri_Purge_Sucuri_Api {
 		$body        = json_decode( $body_raw, true );
 
 		// HTTP 429: Sucuri's formal rate limiter
-		if ( $status_code === 429 ) {
+		if ( 429 === $status_code ) {
 			$retry_after = (int) wp_remote_retrieve_header( $response, 'retry-after' );
 			if ( $retry_after <= 0 && is_array( $body ) && isset( $body['rate_limit']['reset_time'] ) ) {
 				$retry_after = max( 0, (int) $body['rate_limit']['reset_time'] - time() );
@@ -135,7 +144,7 @@ class Lookit_Sucuri_Purge_Sucuri_Api {
 		}
 
 		// Sucuri's own status field: 1 = success, 0 = failure
-		if ( ! empty( $body['status'] ) && (int) $body['status'] === 1 ) {
+		if ( ! empty( $body['status'] ) && 1 === (int) $body['status'] ) {
 			return array(
 				'success' => true,
 				'message' => $success_message,
@@ -153,7 +162,7 @@ class Lookit_Sucuri_Purge_Sucuri_Api {
 		}
 
 		// "Internal error" from Sucuri almost always means auth failure.
-		if ( stripos( $error_text, 'internal error' ) !== false ) {
+		if ( false !== stripos( $error_text, 'internal error' ) ) {
 			$error_text = 'Authentication failed. Check your API Key in Settings → Sucuri Cache Purge.';
 		}
 
