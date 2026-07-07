@@ -6,9 +6,9 @@ class Lookit_Sucuri_Purge_Admin_Bar {
 	const HANDLE = 'lookit-sucuri-purge-admin-bar';
 
 	public static function init() {
-		add_action( 'admin_bar_menu',        array( __CLASS__, 'add_purge_button' ), 999 );
+		add_action( 'admin_bar_menu', array( __CLASS__, 'add_purge_button' ), 999 );
 		add_action( 'admin_enqueue_scripts', array( __CLASS__, 'enqueue_assets' ) );
-		add_action( 'wp_enqueue_scripts',    array( __CLASS__, 'enqueue_assets' ) );
+		add_action( 'wp_enqueue_scripts', array( __CLASS__, 'enqueue_assets' ) );
 	}
 
 	public static function add_purge_button( WP_Admin_Bar $wp_admin_bar ) {
@@ -19,29 +19,35 @@ class Lookit_Sucuri_Purge_Admin_Bar {
 
 		$current_url = self::get_current_url();
 
-		$wp_admin_bar->add_node( array(
-			'id'    => 'lookit-sucuri-purge-group',
-			'title' => '🛡 Sucuri Cache Purge',
-			'href'  => false,
-			'meta'  => array( 'class' => 'lookit-sucuri-purge-top-level' ),
-		) );
+		$wp_admin_bar->add_node(
+			array(
+				'id'    => 'lookit-sucuri-purge-group',
+				'title' => '🛡 Sucuri Cache Purge',
+				'href'  => false,
+				'meta'  => array( 'class' => 'lookit-sucuri-purge-top-level' ),
+			)
+		);
 
 		if ( $current_url ) {
-			$wp_admin_bar->add_node( array(
-				'id'     => 'lookit-sucuri-purge-url',
-				'parent' => 'lookit-sucuri-purge-group',
-				'title'  => 'Purge This URL',
-				'href'   => 'javascript:void(0)',
-				'meta'   => array( 'title' => $current_url ),
-			) );
+			$wp_admin_bar->add_node(
+				array(
+					'id'     => 'lookit-sucuri-purge-url',
+					'parent' => 'lookit-sucuri-purge-group',
+					'title'  => 'Purge This URL',
+					'href'   => 'javascript:void(0)',
+					'meta'   => array( 'title' => $current_url ),
+				)
+			);
 		}
 
-		$wp_admin_bar->add_node( array(
-			'id'     => 'lookit-sucuri-purge-all',
-			'parent' => 'lookit-sucuri-purge-group',
-			'title'  => 'Purge Entire Site',
-			'href'   => 'javascript:void(0)',
-		) );
+		$wp_admin_bar->add_node(
+			array(
+				'id'     => 'lookit-sucuri-purge-all',
+				'parent' => 'lookit-sucuri-purge-group',
+				'title'  => 'Purge Entire Site',
+				'href'   => 'javascript:void(0)',
+			)
+		);
 	}
 
 	private static function get_current_url(): string {

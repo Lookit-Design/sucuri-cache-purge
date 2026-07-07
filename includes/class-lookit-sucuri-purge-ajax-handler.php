@@ -40,14 +40,16 @@ class Lookit_Sucuri_Purge_Ajax_Handler {
 		// Client-side rate limit check
 		$rate_check = self::check_rate_limit();
 		if ( ! $rate_check['allowed'] ) {
-			wp_send_json_error( array(
-				'message'      => sprintf(
-					'Rate limit: %d purges per minute. Wait %d seconds before the next purge.',
-					self::RATE_LIMIT_MAX,
-					$rate_check['wait_seconds']
-				),
-				'rate_limited' => true,
-			) );
+			wp_send_json_error(
+				array(
+					'message'      => sprintf(
+						'Rate limit: %d purges per minute. Wait %d seconds before the next purge.',
+						self::RATE_LIMIT_MAX,
+						$rate_check['wait_seconds']
+					),
+					'rate_limited' => true,
+				)
+			);
 		}
 
 		$result = Lookit_Sucuri_Purge_Sucuri_Api::purge_url( $url );
@@ -56,10 +58,12 @@ class Lookit_Sucuri_Purge_Ajax_Handler {
 			self::record_purge();
 			wp_send_json_success( $result['message'] );
 		} else {
-			wp_send_json_error( array(
-				'message'      => $result['message'],
-				'rate_limited' => ! empty( $result['rate_limited'] ),
-			) );
+			wp_send_json_error(
+				array(
+					'message'      => $result['message'],
+					'rate_limited' => ! empty( $result['rate_limited'] ),
+				)
+			);
 		}
 	}
 
@@ -70,14 +74,16 @@ class Lookit_Sucuri_Purge_Ajax_Handler {
 		// Client-side rate limit check
 		$rate_check = self::check_rate_limit();
 		if ( ! $rate_check['allowed'] ) {
-			wp_send_json_error( array(
-				'message'      => sprintf(
-					'Rate limit: %d purges per minute. Wait %d seconds before the next purge.',
-					self::RATE_LIMIT_MAX,
-					$rate_check['wait_seconds']
-				),
-				'rate_limited' => true,
-			) );
+			wp_send_json_error(
+				array(
+					'message'      => sprintf(
+						'Rate limit: %d purges per minute. Wait %d seconds before the next purge.',
+						self::RATE_LIMIT_MAX,
+						$rate_check['wait_seconds']
+					),
+					'rate_limited' => true,
+				)
+			);
 		}
 
 		$result = Lookit_Sucuri_Purge_Sucuri_Api::purge_all();
@@ -86,10 +92,12 @@ class Lookit_Sucuri_Purge_Ajax_Handler {
 			self::record_purge();
 			wp_send_json_success( $result['message'] );
 		} else {
-			wp_send_json_error( array(
-				'message'      => $result['message'],
-				'rate_limited' => ! empty( $result['rate_limited'] ),
-			) );
+			wp_send_json_error(
+				array(
+					'message'      => $result['message'],
+					'rate_limited' => ! empty( $result['rate_limited'] ),
+				)
+			);
 		}
 	}
 
@@ -125,9 +133,14 @@ class Lookit_Sucuri_Purge_Ajax_Handler {
 		}
 
 		// Drop timestamps older than the window
-		$log = array_values( array_filter( $log, function( $ts ) use ( $cutoff ) {
-			return (int) $ts > $cutoff;
-		} ) );
+		$log = array_values(
+			array_filter(
+				$log,
+				function ( $ts ) use ( $cutoff ) {
+					return (int) $ts > $cutoff;
+				}
+			)
+		);
 
 		if ( count( $log ) >= self::RATE_LIMIT_MAX ) {
 			// Oldest timestamp in the window tells us when the next slot opens up
@@ -160,9 +173,14 @@ class Lookit_Sucuri_Purge_Ajax_Handler {
 		}
 
 		// Drop old entries
-		$log = array_values( array_filter( $log, function( $ts ) use ( $cutoff ) {
-			return (int) $ts > $cutoff;
-		} ) );
+		$log = array_values(
+			array_filter(
+				$log,
+				function ( $ts ) use ( $cutoff ) {
+					return (int) $ts > $cutoff;
+				}
+			)
+		);
 
 		$log[] = $now;
 
