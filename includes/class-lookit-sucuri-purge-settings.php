@@ -8,6 +8,7 @@ class Lookit_Sucuri_Purge_Settings {
 	public static function init() {
 		add_action( 'admin_menu', array( __CLASS__, 'add_settings_page' ) );
 		add_action( 'admin_init', array( __CLASS__, 'register_settings' ) );
+		add_action( 'admin_init', array( __CLASS__, 'maybe_disable_autoload' ) );
 	}
 
 	public static function add_settings_page() {
@@ -24,7 +25,12 @@ class Lookit_Sucuri_Purge_Settings {
 		register_setting(
 			'lookit_sucuri_purge_group',
 			self::OPTION_KEY,
-			array( __CLASS__, 'sanitize_settings' )
+			array(
+				'type'              => 'array',
+				'sanitize_callback' => array( __CLASS__, 'sanitize_settings' ),
+				'default'           => array(),
+				'autoload'          => false,
+			)
 		);
 
 		add_settings_section(
@@ -159,6 +165,23 @@ class Lookit_Sucuri_Purge_Settings {
 			</ul>
 		</div>
 		<?php
+	}
+
+	/**
+	 * Keep the credentials out of the autoloaded options so the key is not
+	 * pulled into memory on every front-end request. Older installs that saved
+	 * the option as autoloaded are migrated in place.
+	 */
+	public static function maybe_disable_autoload() {
+		$alloptions = wp_load_alloptions();
+
+		if ( ! isset( $alloptions[ self::OPTION_KEY ] ) ) {
+			return;
+		}
+
+		$value = get_option( self::OPTION_KEY );
+		delete_option( self::OPTION_KEY );
+		add_option( self::OPTION_KEY, $value, '', false );
 	}
 
 	/**
