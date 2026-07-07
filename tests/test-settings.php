@@ -64,6 +64,18 @@ class Test_Lookit_Sucuri_Purge_Settings extends WP_UnitTestCase {
 		$this->assertSame( array( null, null ), Lookit_Sucuri_Purge_Settings::get_api_credentials() );
 	}
 
+	public function test_maybe_disable_autoload_removes_option_from_autoload() {
+		delete_option( Lookit_Sucuri_Purge_Settings::OPTION_KEY );
+		add_option( Lookit_Sucuri_Purge_Settings::OPTION_KEY, array( 'api_key' => self::VALID_KEY ), '', 'yes' );
+
+		$this->assertArrayHasKey( Lookit_Sucuri_Purge_Settings::OPTION_KEY, wp_load_alloptions() );
+
+		Lookit_Sucuri_Purge_Settings::maybe_disable_autoload();
+
+		$this->assertArrayNotHasKey( Lookit_Sucuri_Purge_Settings::OPTION_KEY, wp_load_alloptions() );
+		$this->assertSame( self::VALID_KEY, Lookit_Sucuri_Purge_Settings::get_api_key() );
+	}
+
 	public function test_is_configured_requires_both_parts() {
 		$this->assertFalse( Lookit_Sucuri_Purge_Settings::is_configured() );
 
