@@ -1,0 +1,67 @@
+#wp-admin-bar-lookit-sucuri-purge-group > .ab-item {
+	color: #fff !important;
+}
+#wp-admin-bar-lookit-sucuri-purge-group:hover > .ab-item,
+#wp-admin-bar-lookit-sucuri-purge-group.hover > .ab-item {
+	color: #fff !important;
+}
+#wp-admin-bar-lookit-sucuri-purge-url > .ab-item,
+#wp-admin-bar-lookit-sucuri-purge-all > .ab-item {
+	padding: 8px 16px !important;
+}
+#wp-admin-bar-lookit-sucuri-purge-url > .ab-item:hover,
+#wp-admin-bar-lookit-sucuri-purge-all > .ab-item:hover {
+	background: #028673 !important;
+	color: #fff !important;
+}
+#wp-admin-bar-lookit-sucuri-purge-url.lookit-sucuri-purging > .ab-item,
+#wp-admin-bar-lookit-sucuri-purge-all.lookit-sucuri-purging > .ab-item {
+	opacity: 0.6;
+	cursor: wait;
+}
+#wp-admin-bar-lookit-sucuri-purge-url.lookit-sucuri-success > .ab-item,
+#wp-admin-bar-lookit-sucuri-purge-all.lookit-sucuri-success > .ab-item {
+	background: #46b450 !important;
+	color: #fff !important;
+}
+#wp-admin-bar-lookit-sucuri-purge-url.lookit-sucuri-error > .ab-item,
+#wp-admin-bar-lookit-sucuri-purge-all.lookit-sucuri-error > .ab-item {
+	background: #dc3232 !important;
+	color: #fff !important;
+}
+
+/* Toast */
+#lookit-sucuri-toast {
+	position: fixed !important;
+	bottom: 32px !important;
+	left: 50% !important;
+	transform: translateX(-50%) translateY(20px) !important;
+	background: #1d2327 !important;
+	color: #fff !important;
+	padding: 12px 24px !important;
+	border-radius: 4px !important;
+	font-size: 13px !important;
+	font-family: Arial, sans-serif !important;
+	font-weight: 500 !important;
+	box-shadow: 0 4px 12px rgba(0,0,0,0.4) !important;
+	z-index: 999999 !important;
+	opacity: 0 !important;
+	transition: opacity 0.25s ease, transform 0.25s ease !important;
+	pointer-events: none !important;
+	max-width: 90vw !important;
+	text-align: center !important;
+	line-height: 1.4 !important;
+}
+#lookit-sucuri-toast.lookit-sucuri-toast-show {
+	opacity: 1 !important;
+	transform: translateX(-50%) translateY(0) !important;
+}
+#lookit-sucuri-toast.success {
+	border-left: 4px solid #46b450 !important;
+}
+#lookit-sucuri-toast.error {
+	border-left: 4px solid #dc3232 !important;
+}
+#lookit-sucuri-toast.warning {
+	border-left: 4px solid #ffb900 !important;
+}
