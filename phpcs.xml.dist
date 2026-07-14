@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
-<ruleset name="Lookit Sucuri Cache Purge">
-    <description>Coding standards for the Lookit Sucuri Cache Purge plugin.</description>
+<ruleset name="Lookit Cache Purge for Sucuri">
+    <description>Coding standards for the Lookit Cache Purge for Sucuri plugin.</description>
 
     <file>.</file>
 
@@ -21,7 +21,7 @@
     <rule ref="WordPress.WP.I18n">
         <properties>
             <property name="text_domain" type="array">
-                <element value="lookit-sucuri-cache-purge"/>
+                <element value="lookit-cache-purge-for-sucuri"/>
             </property>
         </properties>
     </rule>

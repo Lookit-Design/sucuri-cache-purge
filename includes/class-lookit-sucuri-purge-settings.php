@@ -13,8 +13,8 @@ class Lookit_Sucuri_Purge_Settings {
 
 	public static function add_settings_page() {
 		add_options_page(
-			__( 'Lookit Sucuri Cache Purge', 'lookit-sucuri-cache-purge' ),
-			__( 'Sucuri Cache Purge', 'lookit-sucuri-cache-purge' ),
+			__( 'Lookit Cache Purge for Sucuri', 'lookit-cache-purge-for-sucuri' ),
+			__( 'Sucuri Cache Purge', 'lookit-cache-purge-for-sucuri' ),
 			'manage_options',
 			'lookit-sucuri-purge',
 			array( __CLASS__, 'render_settings_page' )
@@ -35,14 +35,14 @@ class Lookit_Sucuri_Purge_Settings {
 
 		add_settings_section(
 			'lookit_sucuri_purge_main',
-			__( 'Sucuri API Credentials', 'lookit-sucuri-cache-purge' ),
+			__( 'Sucuri API Credentials', 'lookit-cache-purge-for-sucuri' ),
 			array( __CLASS__, 'render_section_description' ),
 			'lookit-sucuri-purge'
 		);
 
 		add_settings_field(
 			'api_key',
-			__( 'API Key (for plugin)', 'lookit-sucuri-cache-purge' ),
+			__( 'API Key (for plugin)', 'lookit-cache-purge-for-sucuri' ),
 			array( __CLASS__, 'render_api_key_field' ),
 			'lookit-sucuri-purge',
 			'lookit_sucuri_purge_main'
@@ -67,7 +67,7 @@ class Lookit_Sucuri_Purge_Settings {
 			add_settings_error(
 				self::OPTION_KEY,
 				'invalid_format',
-				__( 'Invalid API Key format. Expected: 32 characters / 32 characters. Paste the "API Key (for plugin)" value from your Sucuri dashboard → API → API Details.', 'lookit-sucuri-cache-purge' ),
+				__( 'Invalid API Key format. Expected: 32 characters / 32 characters. Paste the "API Key (for plugin)" value from your Sucuri dashboard → API → API Details.', 'lookit-cache-purge-for-sucuri' ),
 				'error'
 			);
 			// Keep whatever was previously saved rather than overwriting with bad data.
@@ -82,10 +82,10 @@ class Lookit_Sucuri_Purge_Settings {
 	public static function render_section_description() {
 		?>
 		<p>
-			<?php esc_html_e( 'Enter your Sucuri API Key (for plugin) below.', 'lookit-sucuri-cache-purge' ); ?>
+			<?php esc_html_e( 'Enter your Sucuri API Key (for plugin) below.', 'lookit-cache-purge-for-sucuri' ); ?>
 			<br>
-			<?php esc_html_e( 'Find it in the Sucuri WAF dashboard → API → API Details → "API Key (for plugin)".', 'lookit-sucuri-cache-purge' ); ?>
-			<?php esc_html_e( 'It will look like:', 'lookit-sucuri-cache-purge' ); ?>
+			<?php esc_html_e( 'Find it in the Sucuri WAF dashboard → API → API Details → "API Key (for plugin)".', 'lookit-cache-purge-for-sucuri' ); ?>
+			<?php esc_html_e( 'It will look like:', 'lookit-cache-purge-for-sucuri' ); ?>
 			<code>32-characters/32-characters</code>
 		</p>
 		<?php
@@ -108,15 +108,15 @@ class Lookit_Sucuri_Purge_Settings {
 			id="lookit_sucuri_api_key"
 			value=""
 			class="regular-text"
-			placeholder="<?php echo $api_key ? esc_attr__( 'Leave blank to keep the saved key', 'lookit-sucuri-cache-purge' ) : esc_attr__( 'e.g. 31d3f48f9b...a7c2e1f8/a7c2e1f8...b3d4c6e7', 'lookit-sucuri-cache-purge' ); ?>"
+			placeholder="<?php echo $api_key ? esc_attr__( 'Leave blank to keep the saved key', 'lookit-cache-purge-for-sucuri' ) : esc_attr__( 'e.g. 31d3f48f9b...a7c2e1f8/a7c2e1f8...b3d4c6e7', 'lookit-cache-purge-for-sucuri' ); ?>"
 			autocomplete="off"
 			style="font-family: monospace;"
 		>
 		<?php if ( $api_key ) : ?>
 			<p class="description">
-				<?php esc_html_e( 'Currently set:', 'lookit-sucuri-cache-purge' ); ?>
+				<?php esc_html_e( 'Currently set:', 'lookit-cache-purge-for-sucuri' ); ?>
 				<code><?php echo esc_html( $masked ); ?></code>
-				&mdash; <?php esc_html_e( 'leave blank to keep it, or paste a new value to replace it.', 'lookit-sucuri-cache-purge' ); ?>
+				&mdash; <?php esc_html_e( 'leave blank to keep it, or paste a new value to replace it.', 'lookit-cache-purge-for-sucuri' ); ?>
 			</p>
 		<?php endif; ?>
 		<?php
@@ -131,36 +131,36 @@ class Lookit_Sucuri_Purge_Settings {
 		<div class="wrap lookit-sucuri-purge-settings">
 			<h1>
 				<span class="dashicons dashicons-shield-alt" style="font-size:28px;vertical-align:middle;margin-right:6px;color:#028673;"></span>
-				<?php esc_html_e( 'Lookit Sucuri Cache Purge — Settings', 'lookit-sucuri-cache-purge' ); ?>
+				<?php esc_html_e( 'Lookit Cache Purge for Sucuri — Settings', 'lookit-cache-purge-for-sucuri' ); ?>
 			</h1>
 
 			<form method="post" action="options.php">
 				<?php
 				settings_fields( 'lookit_sucuri_purge_group' );
 				do_settings_sections( 'lookit-sucuri-purge' );
-				submit_button( __( 'Save Credentials', 'lookit-sucuri-cache-purge' ) );
+				submit_button( __( 'Save Credentials', 'lookit-cache-purge-for-sucuri' ) );
 				?>
 			</form>
 
 			<hr>
-			<h2><?php esc_html_e( 'How It Works', 'lookit-sucuri-cache-purge' ); ?></h2>
+			<h2><?php esc_html_e( 'How It Works', 'lookit-cache-purge-for-sucuri' ); ?></h2>
 			<ul style="list-style:disc;margin-left:1.5em;line-height:1.8;">
-				<li><?php esc_html_e( 'When editing any post or page in wp-admin — or when viewing the live site while logged in — a "Sucuri Cache Purge" menu appears in the admin bar.', 'lookit-sucuri-cache-purge' ); ?></li>
-				<li><?php esc_html_e( 'Clicking "Purge This URL" sends only the current page URL to the Sucuri WAF API — clearing that single URL from the edge cache.', 'lookit-sucuri-cache-purge' ); ?></li>
-				<li><?php esc_html_e( '"Purge Entire Site" clears the full Sucuri cache (with confirmation).', 'lookit-sucuri-cache-purge' ); ?></li>
-				<li><?php esc_html_e( 'Sucuri takes up to 2 minutes to fully propagate a cache clear across its edge network — this is normal.', 'lookit-sucuri-cache-purge' ); ?></li>
-				<li><?php esc_html_e( 'To protect against accidental hammering, the plugin limits you to 6 purges per minute.', 'lookit-sucuri-cache-purge' ); ?></li>
+				<li><?php esc_html_e( 'When editing any post or page in wp-admin — or when viewing the live site while logged in — a "Sucuri Cache Purge" menu appears in the admin bar.', 'lookit-cache-purge-for-sucuri' ); ?></li>
+				<li><?php esc_html_e( 'Clicking "Purge This URL" sends only the current page URL to the Sucuri WAF API — clearing that single URL from the edge cache.', 'lookit-cache-purge-for-sucuri' ); ?></li>
+				<li><?php esc_html_e( '"Purge Entire Site" clears the full Sucuri cache (with confirmation).', 'lookit-cache-purge-for-sucuri' ); ?></li>
+				<li><?php esc_html_e( 'Sucuri takes up to 2 minutes to fully propagate a cache clear across its edge network — this is normal.', 'lookit-cache-purge-for-sucuri' ); ?></li>
+				<li><?php esc_html_e( 'To protect against accidental hammering, the plugin limits you to 6 purges per minute.', 'lookit-cache-purge-for-sucuri' ); ?></li>
 			</ul>
 
-			<h2><?php esc_html_e( 'Important Notes', 'lookit-sucuri-cache-purge' ); ?></h2>
+			<h2><?php esc_html_e( 'Important Notes', 'lookit-cache-purge-for-sucuri' ); ?></h2>
 			<ul style="list-style:disc;margin-left:1.5em;line-height:1.8;">
 				<li>
-					<strong><?php esc_html_e( 'Static files cache differently.', 'lookit-sucuri-cache-purge' ); ?></strong>
-					<?php esc_html_e( 'Sucuri caches images, CSS, JS, PDFs, and fonts on its edge for up to 72 hours regardless of per-URL purging. If you change a stylesheet or image, use "Purge Entire Site" or versioning (e.g. ?ver=1.2.3).', 'lookit-sucuri-cache-purge' ); ?>
+					<strong><?php esc_html_e( 'Static files cache differently.', 'lookit-cache-purge-for-sucuri' ); ?></strong>
+					<?php esc_html_e( 'Sucuri caches images, CSS, JS, PDFs, and fonts on its edge for up to 72 hours regardless of per-URL purging. If you change a stylesheet or image, use "Purge Entire Site" or versioning (e.g. ?ver=1.2.3).', 'lookit-cache-purge-for-sucuri' ); ?>
 				</li>
 				<li>
-					<strong><?php esc_html_e( '2-minute propagation.', 'lookit-sucuri-cache-purge' ); ?></strong>
-					<?php esc_html_e( 'After a successful purge, Sucuri takes up to 2 minutes to fully flush the cache across all edge servers. If you do not see your change immediately, wait and reload.', 'lookit-sucuri-cache-purge' ); ?>
+					<strong><?php esc_html_e( '2-minute propagation.', 'lookit-cache-purge-for-sucuri' ); ?></strong>
+					<?php esc_html_e( 'After a successful purge, Sucuri takes up to 2 minutes to fully flush the cache across all edge servers. If you do not see your change immediately, wait and reload.', 'lookit-cache-purge-for-sucuri' ); ?>
 				</li>
 			</ul>
 		</div>

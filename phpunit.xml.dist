@@ -9,7 +9,7 @@
     beStrictAboutTestsThatDoNotTestAnything="false"
 >
     <testsuites>
-        <testsuite name="Lookit Sucuri Cache Purge">
+        <testsuite name="Lookit Cache Purge for Sucuri">
             <directory suffix=".php">./tests</directory>
             <exclude>./tests/bootstrap.php</exclude>
         </testsuite>

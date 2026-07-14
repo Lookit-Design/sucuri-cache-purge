@@ -1,13 +1,13 @@
 <?php
 /**
- * Plugin Name:  Lookit Sucuri Cache Purge
+ * Plugin Name:  Lookit Cache Purge for Sucuri
  * Plugin URI:   https://lookitdesign.com/software/sucuri-cache-purge/
  * Description:  Adds a single-URL Sucuri cache purge button to the wp-admin admin bar.
  * Version:      1.0.0
  * Author:       Lookit Design
  * Author URI:   https://lookitdesign.com
  * License:      GPL-2.0+
- * Text Domain:  lookit-sucuri-cache-purge
+ * Text Domain:  lookit-cache-purge-for-sucuri
  */
 
 defined( 'ABSPATH' ) || exit;

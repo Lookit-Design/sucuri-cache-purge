@@ -15,7 +15,7 @@ class Test_Lookit_Sucuri_Purge_Uninstall extends WP_UnitTestCase {
 			array( 'api_key' => 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb' )
 		);
 
-		define( 'WP_UNINSTALL_PLUGIN', 'lookit-sucuri-cache-purge/lookit-sucuri-cache-purge.php' );
+		define( 'WP_UNINSTALL_PLUGIN', 'lookit-cache-purge-for-sucuri/lookit-cache-purge-for-sucuri.php' );
 		require dirname( __DIR__ ) . '/uninstall.php';
 
 		$this->assertFalse( get_option( Lookit_Sucuri_Purge_Settings::OPTION_KEY ) );
