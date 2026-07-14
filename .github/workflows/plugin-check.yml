@@ -44,8 +44,8 @@ jobs:
 
       - name: Build distributable copy
         run: |
-          mkdir -p build/lookit-sucuri-cache-purge
-          rsync -a --exclude-from=.distignore ./ build/lookit-sucuri-cache-purge/
+          mkdir -p build/lookit-cache-purge-for-sucuri
+          rsync -a --exclude-from=.distignore ./ build/lookit-cache-purge-for-sucuri/
 
       - name: Set up WordPress and Plugin Check
         run: |
@@ -54,13 +54,13 @@ jobs:
           wp db create --path=wp
           wp core install --path=wp --url=http://localhost --title="Plugin Check" \
             --admin_user=admin --admin_password=admin --admin_email=admin@example.com --skip-email
-          cp -R build/lookit-sucuri-cache-purge wp/wp-content/plugins/lookit-sucuri-cache-purge
+          cp -R build/lookit-cache-purge-for-sucuri wp/wp-content/plugins/lookit-cache-purge-for-sucuri
           wp plugin install plugin-check --activate --path=wp
-          wp plugin activate lookit-sucuri-cache-purge --path=wp
+          wp plugin activate lookit-cache-purge-for-sucuri --path=wp
 
       - name: Run Plugin Check
         run: |
-          OUTPUT=$(wp plugin check lookit-sucuri-cache-purge --path=wp --include-experimental --severity=error 2>&1)
+          OUTPUT=$(wp plugin check lookit-cache-purge-for-sucuri --path=wp --include-experimental --severity=error 2>&1)
           echo "$OUTPUT"
           if echo "$OUTPUT" | grep -q "No errors found"; then
             echo "Plugin Check passed with no errors."

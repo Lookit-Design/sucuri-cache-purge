@@ -1,5 +1,5 @@
 {
-    "name": "lookitdesign/lookit-sucuri-cache-purge",
+    "name": "lookitdesign/lookit-cache-purge-for-sucuri",
     "description": "Surgical single-URL Sucuri cache purge from the WordPress admin bar.",
     "type": "wordpress-plugin",
     "license": "GPL-2.0-or-later",

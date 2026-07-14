@@ -1,4 +1,4 @@
-=== Lookit Sucuri Cache Purge ===
+=== Lookit Cache Purge for Sucuri ===
 Contributors: lookitdesign
 Tags: sucuri, cache, purge, waf, admin bar
 Requires at least: 5.8
@@ -16,7 +16,7 @@ Sucuri's Website Firewall caches your pages on its global edge network. That cac
 
 Sucuri's dashboard has a "Clear Cache – Per File" feature that lets you purge a single URL from the edge cache. But to use it, you have to leave WordPress, log into the Sucuri WAF dashboard, navigate to Performance, and paste the path manually. Meanwhile, tools like WP Rocket's Sucuri add-on only support full-site cache clearing — the nuclear option.
 
-**Lookit&reg; Sucuri Cache Purge fills this gap.**
+**Lookit&reg; Cache Purge for Sucuri fills this gap.**
 
 A clean "🛡 Sucuri Cache Purge" menu appears in your WordPress admin bar with two options:
 
@@ -68,7 +68,7 @@ _Lookit&reg; is a registered trademark of ZENOVA CORP. Sucuri is a trademark of 
 
 == Installation ==
 
-1. Upload the `lookit-sucuri-cache-purge` folder to `/wp-content/plugins/`
+1. Upload the `lookit-cache-purge-for-sucuri` folder to `/wp-content/plugins/`
 2. Activate the plugin through the **Plugins** menu in WordPress
 3. Go to **Settings → Sucuri Cache Purge** and paste your Sucuri API Key (for plugin)
 4. The menu will appear in your admin bar

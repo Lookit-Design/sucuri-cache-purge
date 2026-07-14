@@ -31,7 +31,7 @@ require_once $_functions;
  * Load the plugin under test.
  */
 function _lookit_sucuri_purge_load_plugin() {
-	require dirname( __DIR__ ) . '/lookit-sucuri-cache-purge.php';
+	require dirname( __DIR__ ) . '/lookit-cache-purge-for-sucuri.php';
 }
 tests_add_filter( 'muplugins_loaded', '_lookit_sucuri_purge_load_plugin' );
 

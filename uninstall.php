@@ -1,6 +1,6 @@
 <?php
 /**
- * Uninstall routine for Lookit Sucuri Cache Purge.
+ * Uninstall routine for Lookit Cache Purge for Sucuri.
  *
  * Removes the stored Sucuri credentials so the API key does not linger
  * in the database after the plugin is deleted.
