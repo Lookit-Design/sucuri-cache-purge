@@ -136,6 +136,8 @@ No data about your site's visitors is collected or transmitted. The plugin does 
 1. The Sucuri Cache Purge admin bar menu
 2. The Settings page with the combined API Key field
 3. A successful purge toast notification
+4. The confirmation dialog shown before a purge, with the exact URL to be cleared
+5. The full Settings page with the API Key field, "How It Works", and "Important Notes"
 
 == Changelog ==
 
