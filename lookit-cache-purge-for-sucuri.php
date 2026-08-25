@@ -3,7 +3,7 @@
  * Plugin Name:  Lookit Cache Purge for Sucuri
  * Plugin URI:   https://lookitdesign.com/software/sucuri-cache-purge/
  * Description:  Adds a single-URL Sucuri cache purge button to the wp-admin admin bar.
- * Version:      1.0.0
+ * Version:      1.0.1
  * Author:       Lookit Design
  * Author URI:   https://lookitdesign.com
  * License:      GPL-2.0+
@@ -12,7 +12,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'LOOKIT_SUCURI_PURGE_VERSION', '1.0.0' );
+define( 'LOOKIT_SUCURI_PURGE_VERSION', '1.0.1' );
 define( 'LOOKIT_SUCURI_PURGE_DIR', plugin_dir_path( __FILE__ ) );
 define( 'LOOKIT_SUCURI_PURGE_URL', plugin_dir_url( __FILE__ ) );
 

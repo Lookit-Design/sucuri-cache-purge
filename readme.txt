@@ -4,7 +4,7 @@ Tags: sucuri, cache, purge, waf, admin bar
 Requires at least: 5.9
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -141,6 +141,9 @@ No data about your site's visitors is collected or transmitted. The plugin does 
 
 == Changelog ==
 
+= 1.0.1 =
+* Tested up to WordPress 7.1
+
 = 1.0.0 =
 * Initial release
 * Context-aware single-URL purge from admin bar
@@ -151,6 +154,9 @@ No data about your site's visitors is collected or transmitted. The plugin does 
 * Works in wp-admin editor and frontend (when logged in)
 
 == Upgrade Notice ==
+
+= 1.0.1 =
+Tested up to WordPress 7.1.
 
 = 1.0.0 =
 Initial release.
