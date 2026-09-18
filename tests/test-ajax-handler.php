@@ -63,6 +63,17 @@ class Test_Lookit_Sucuri_Purge_Ajax_Handler extends WP_Ajax_UnitTestCase {
 		$this->assertTrue( $response['success'] );
 	}
 
+	public function test_purge_url_accepts_same_site_host_with_different_case() {
+		$this->_setRole( 'administrator' );
+		$this->set_nonce( 'lookit_sucuri_purge' );
+		$host         = wp_parse_url( home_url(), PHP_URL_HOST );
+		$_POST['url'] = str_replace( $host, strtoupper( $host ), home_url( '/sample-page/' ) );
+
+		$response = $this->dispatch( 'lookit_sucuri_purge_url' );
+
+		$this->assertTrue( $response['success'] );
+	}
+
 	public function test_purge_url_rejects_invalid_url() {
 		$this->_setRole( 'administrator' );
 		$this->set_nonce( 'lookit_sucuri_purge' );
