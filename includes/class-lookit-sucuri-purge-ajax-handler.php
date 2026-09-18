@@ -33,7 +33,7 @@ class Lookit_Sucuri_Purge_Ajax_Handler {
 		$site_host = wp_parse_url( home_url(), PHP_URL_HOST );
 		$req_host  = wp_parse_url( $url, PHP_URL_HOST );
 
-		if ( $site_host !== $req_host ) {
+		if ( 0 !== strcasecmp( (string) $site_host, (string) $req_host ) ) {
 			wp_send_json_error( array( 'message' => 'URL does not belong to this site.' ) );
 		}
 
